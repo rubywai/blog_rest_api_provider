@@ -13,12 +13,17 @@ class GetOnePostResponse {
     photo = json['photo'];
   }
 
+  @override
+  String toString() {
+    return 'GetOnePostResponse{id: $id, title: $title, body: $body, photo: $photo}';
+  }
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['body'] = this.body;
-    data['photo'] = this.photo;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['body'] = body;
+    data['photo'] = photo;
     return data;
   }
 }
