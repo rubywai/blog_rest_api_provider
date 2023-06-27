@@ -1,6 +1,7 @@
 import 'package:blog_rest_api_provider/data/model/get_all_post_response.dart';
 import 'package:blog_rest_api_provider/provider/get_all_posts/get_all_post_state.dart';
 import 'package:blog_rest_api_provider/provider/get_all_posts/get_all_provider.dart';
+import 'package:blog_rest_api_provider/ui/screen/blog_post_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,9 +34,17 @@ class _HomeState extends State<Home> {
                   itemCount: getAllPostResponseList.length,
                   itemBuilder: (context,position){
                     GetAllPostResponse getAllPostResponse = getAllPostResponseList[position];
-                    return Card(
-                      child: ListTile(
-                        title: Text('${getAllPostResponse.title}'),
+                    return InkWell(
+                      onTap: (){
+                        if(getAllPostResponse.id != null) {
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => BlogPostDetailScreen(id: getAllPostResponse.id!)));
+                        }
+                      },
+                      child: Card(
+                        child: ListTile(
+                          title: Text('${getAllPostResponse.title}'),
+                        ),
                       ),
                     );
                   });
