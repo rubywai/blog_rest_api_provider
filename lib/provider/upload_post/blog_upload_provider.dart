@@ -5,20 +5,28 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 
 class BlogUploadNotifier extends ChangeNotifier{
-  UploadUIState uploadUIState = UploadUILoading(0);
+  UploadUIState uploadUIState = UploadFormState();
   final BlogApiService _blogApiService = BlogApiService();
-  void upload({required String title, required String body,required FormData data}) async{
+  void upload({required String title, required String body,required FormData? data}) async{
     try{
       uploadUIState = UploadUILoading(0);
+      notifyListeners();
       BlogUploadResponse blogUploadResponse = await _blogApiService.uploadPost(title: title, body: body, data: data,
       sendProgress: (int send,int size){
-        int progress = ((send/size) * 100).toInt();
+        double progress = ((send/size) * 100);
         uploadUIState = UploadUILoading(progress);
+        notifyListeners();
       });
       uploadUIState = UploadUiSuccess(blogUploadResponse);
+      notifyListeners();
     }
     catch(e){
       uploadUIState = UploadUiFailed('Something wrong');
+      notifyListeners();
     }
+  }
+  void tryAgain(){
+    uploadUIState = UploadFormState();
+    notifyListeners();
   }
 }

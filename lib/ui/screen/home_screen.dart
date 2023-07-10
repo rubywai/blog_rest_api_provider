@@ -2,6 +2,7 @@ import 'package:blog_rest_api_provider/data/model/get_all_post_response.dart';
 import 'package:blog_rest_api_provider/provider/get_all_posts/get_all_post_state.dart';
 import 'package:blog_rest_api_provider/provider/get_all_posts/get_all_provider.dart';
 import 'package:blog_rest_api_provider/ui/screen/blog_post_detail_screen.dart';
+import 'package:blog_rest_api_provider/ui/screen/blog_upload_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,10 +36,11 @@ class _HomeState extends State<Home> {
                   itemBuilder: (context,position){
                     GetAllPostResponse getAllPostResponse = getAllPostResponseList[position];
                     return InkWell(
-                      onTap: (){
+                      onTap: () async{
                         if(getAllPostResponse.id != null) {
                           Navigator.push(context,
                             MaterialPageRoute(builder: (_) => BlogPostDetailScreen(id: getAllPostResponse.id!)));
+
                         }
                       },
                       child: Card(
@@ -63,6 +65,18 @@ class _HomeState extends State<Home> {
             }
             return const Center(child: CircularProgressIndicator());
           },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () async{
+          final result = await Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const BlogUploadScreen()));
+          if(result != null && result == "success"){
+            if(mounted) {
+              _getAllPost(context);
+            }
+          }
+        },
       ),
     );
   }

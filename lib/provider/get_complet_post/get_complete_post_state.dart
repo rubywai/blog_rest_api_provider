@@ -1,6 +1,7 @@
 import 'package:blog_rest_api_provider/data/model/get_one_post_response.dart';
-
+//provider riverpod bloc redux getx
 abstract class GetCompletePostState{}
+
 class GetCompletePostLoading extends GetCompletePostState{}
 
 class GetCompletePostSuccess extends GetCompletePostState{

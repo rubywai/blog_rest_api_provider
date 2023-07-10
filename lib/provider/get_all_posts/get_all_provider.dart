@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class GetAllPostNotifier extends ChangeNotifier{
   GetAllPostState getAllPostState = GetAllPostLoading();
+
   final BlogApiService _apiService = BlogApiService();
   Future<void> getAllPost() async{
     getAllPostState = GetAllPostLoading();
@@ -16,6 +17,7 @@ class GetAllPostNotifier extends ChangeNotifier{
     }
     catch(e){
       getAllPostState = GetAllPostFailed(e.toString());
+      notifyListeners();
     }
   }
 }

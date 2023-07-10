@@ -23,6 +23,20 @@ class _BlogPostDetailScreenState extends State<BlogPostDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Consumer<GetCompletePostNotifier>(
+          builder: (_,getCompletePostNotifier,__){
+            GetCompletePostState getCompletePostState = getCompletePostNotifier.getCompletePostState;
+            if(getCompletePostState is GetCompletePostSuccess){
+              GetOnePostResponse getOnePostResponse = getCompletePostState.getOnePostResponse;
+              return Text(getOnePostResponse.title ?? '');
+            }
+            else if(getCompletePostState is GetCompletePostFailed){
+              return Text(getCompletePostState.errorMessage);
+            }
+            return const Text('......');
+          },
+        ),
       ),
       body: Consumer<GetCompletePostNotifier>(
         builder: (_,getCompletePostNotifier,__){
@@ -45,6 +59,7 @@ class _BlogPostDetailScreenState extends State<BlogPostDetailScreen> {
            }
            else if(getCompletePostState is GetCompletePostFailed){
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(getCompletePostState.errorMessage),
                   const Divider(),
