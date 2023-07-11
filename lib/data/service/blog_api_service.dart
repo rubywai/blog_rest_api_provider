@@ -2,8 +2,6 @@ import 'package:blog_rest_api_provider/data/model/blog_upload_response.dart';
 import 'package:blog_rest_api_provider/data/model/get_all_post_response.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
-
-
 import '../model/get_one_post_response.dart';
 
 class BlogApiService {
