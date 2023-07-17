@@ -31,25 +31,31 @@ class _HomeState extends State<Home> {
             GetAllPostState getAllPostState = getAllProvider.getAllPostState;
             if(getAllPostState is GetAllPostSuccess){
               List<GetAllPostResponse> getAllPostResponseList = getAllPostState.getAllPostList;
-              return ListView.builder(
-                  itemCount: getAllPostResponseList.length,
-                  itemBuilder: (context,position){
-                    GetAllPostResponse getAllPostResponse = getAllPostResponseList[position];
-                    return InkWell(
-                      onTap: () async{
-                        if(getAllPostResponse.id != null) {
-                          Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => BlogPostDetailScreen(id: getAllPostResponse.id!)));
+              return RefreshIndicator(
+                onRefresh: (){
+                  _getAllPost(context);
+                  return Future.delayed(const Duration(seconds: 1));
+                },
+                child: ListView.builder(
+                    itemCount: getAllPostResponseList.length,
+                    itemBuilder: (context,position){
+                      GetAllPostResponse getAllPostResponse = getAllPostResponseList[position];
+                      return InkWell(
+                        onTap: () async{
+                          if(getAllPostResponse.id != null) {
+                            Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => BlogPostDetailScreen(id: getAllPostResponse.id!)));
 
-                        }
-                      },
-                      child: Card(
-                        child: ListTile(
-                          title: Text('${getAllPostResponse.title}'),
+                          }
+                        },
+                        child: Card(
+                          child: ListTile(
+                            title: Text('${getAllPostResponse.title}'),
+                          ),
                         ),
-                      ),
-                    );
-                  });
+                      );
+                    }),
+              );
             }
             else if(getAllPostState is GetAllPostFailed){
               return Column(
