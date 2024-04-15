@@ -15,9 +15,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _getAllPost(context);
+    });
+  }
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _getAllPost(context);
   }
   @override
   Widget build(BuildContext context) {
@@ -88,5 +95,8 @@ class _HomeState extends State<Home> {
   }
   void _getAllPost(BuildContext ctx){
     Provider.of<GetAllPostNotifier>(ctx,listen: false).getAllPost();
+    //
+    context.read<GetAllPostNotifier>().getAllPost();
+
   }
 }

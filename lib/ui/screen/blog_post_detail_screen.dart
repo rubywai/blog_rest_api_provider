@@ -16,9 +16,15 @@ class BlogPostDetailScreen extends StatefulWidget {
 
 class _BlogPostDetailScreenState extends State<BlogPostDetailScreen> {
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _getBlogDetail(widget.id);
+    });
+    super.initState();
+  }
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _getBlogDetail(widget.id);
   }
 
   @override

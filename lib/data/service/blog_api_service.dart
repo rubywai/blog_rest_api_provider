@@ -50,10 +50,12 @@ class BlogApiService {
     required String body,
   }) async {
     Dio dio = await _getDio();
-   final updateResponse = await dio.put('${baseUrl}post?id=$id&title=$title&body=$body');
-   return UpdateResponse.fromJson(updateResponse.data);
+    final updateResponse =
+        await dio.put('${baseUrl}post?id=$id&title=$title&body=$body');
+    return UpdateResponse.fromJson(updateResponse.data);
   }
-  Future <void> deletePost({required int id}) async{
+
+  Future<void> deletePost({required int id}) async {
     Dio dio = await _getDio();
     final deleteResponse = await dio.delete('${baseUrl}post?id=$id');
   }
