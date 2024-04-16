@@ -1,17 +1,40 @@
-# blog_rest_api_provider
+# Flutter REST API CRUD App
 
-A new Flutter project.
+This Flutter app focuses on demonstrating CRUD operations with REST APIs using Dio for HTTP requests and Provider for state management. It also includes features for image upload and HTTP caching. The API documentation for this project can be found at [http://rubylearner.com:5000](http://rubylearner.com:5000).
+
+## Technologies Used
+
+- Flutter
+- Dio for REST API fetching
+- Provider for state management
+
+## Agenda Topics
+
+- REST API CRUD operations
+- Dio for making HTTP requests
+- Provider for state management
+- Image upload with REST API
+- HTTP caching for improved performance
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To get started with the project, follow these steps:
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository.
+2. Install Flutter and Dart.
+3. Run `flutter pub get` to install dependencies.
+4. Run the app using `flutter run`.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Contributing
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# blog_rest_api_provider
+If you'd like to contribute to the project, please follow these guidelines:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/my-feature`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the branch (`git push origin feature/my-feature`).
+5. Create a new Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
